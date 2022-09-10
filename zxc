@@ -1,19 +1,20 @@
 import numpy as np
-text = open('che.txt', encoding='utf8').read()
-corpus = text.split()
-def make_pairs(corpus):
-    for i in range(len(corpus)-1):
-        yield (corpus[i], corpus[i+1])   
-pairs = make_pairs(corpus)
-word_dict = {}
-for word_1, word_2 in pairs:
-    if word_1 in word_dict.keys():
-        word_dict[word_1].append(word_2)
+text = open('anything.txt', encoding='utf8').read()
+token = text.split()
+dictionary = {}
+def pairsoffords(token):
+    for i in range(len(token)-1):
+        yield (token[i], token[i+1])   
+pairs = pairsoffords(token)
+
+for word1, word2 in pairs:
+    if word1 in dictionary.keys():
+        dictionary[word1].append(word2)
     else:
-        word_dict[word_1] = [word_2]
-first_word = np.random.choice(corpus)
-chain = [first_word]
-n_words = 100
-for i in range(n_words):
-    chain.append(np.random.choice(word_dict[chain[-1]]))
-print(' '.join(chain))
+        dictionary[word1] = [word2]
+first = np.random.choice(token)
+generatedtext = [first]
+words = 100
+for i in range(words):
+    chain.append(np.random.choice(dictionary[generatedtext[-1]]))
+print(' '.join(generatedtext))
